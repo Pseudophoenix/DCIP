@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\begin{document}
+
+\section*{Encoding Techniques for Binary Data \texttt{100110111}}
+
+To encode the binary data \texttt{100110111}, we will explore four different encoding techniques: \textbf{Bipolar-AMI}, \textbf{Pseudoternary}, \textbf{Manchester}, and \textbf{Differential Manchester}.
+
+\begin{enumerate}[label=\alph*.]
+    \item \textbf{Bipolar-AMI (Alternate Mark Inversion)}
+    
+    In Bipolar-AMI:
+    \begin{itemize}
+        \item A '0' is represented by no signal (i.e., zero voltage).
+        \item A '1' is represented by alternating positive and negative voltages (e.g., $+V$ and $-V$).
+    \end{itemize}
+
+    For the binary string \texttt{100110111}:
+    \begin{align*}
+        \text{1} &\rightarrow +V \\
+        \text{0} &\rightarrow 0 \\
+        \text{0} &\rightarrow 0 \\
+        \text{1} &\rightarrow -V \\
+        \text{1} &\rightarrow +V \\
+        \text{0} &\rightarrow 0 \\
+        \text{1} &\rightarrow -V \\
+        \text{1} &\rightarrow +V \\
+        \text{1} &\rightarrow -V
+    \end{align*}
+
+    The encoded signal is: \texttt{+V, 0, 0, -V, +V, 0, -V, +V, -V}
+
+    \item \textbf{Pseudoternary}
+    
+    In Pseudoternary encoding:
+    \begin{itemize}
+        \item A '0' is represented by alternating between positive and negative voltages.
+        \item A '1' is represented by no signal (i.e., zero voltage).
+    \end{itemize}
+
+    For \texttt{100110111}:
+    \begin{align*}
+        \text{1} &\rightarrow 0 \\
+        \text{0} &\rightarrow +V \\
+        \text{0} &\rightarrow -V \\
+        \text{1} &\rightarrow 0 \\
+        \text{1} &\rightarrow +V \\
+        \text{0} &\rightarrow -V \\
+        \text{1} &\rightarrow 0 \\
+        \text{1} &\rightarrow +V \\
+        \text{1} &\rightarrow -V
+    \end{align*}
+
+    The encoded signal is: \texttt{0, +V, -V, 0, +V, -V, 0, +V, -V}
+
+    \item \textbf{Manchester Encoding}
+    
+    In Manchester encoding:
+    \begin{itemize}
+        \item A '0' is represented by a transition from high to low (first half high, second half low).
+        \item A '1' is represented by a transition from low to high (first half low, second half high).
+    \end{itemize}
+
+    For \texttt{100110111}:
+    \begin{align*}
+        \text{1} &\rightarrow \text{Low to High} \\
+        \text{0} &\rightarrow \text{High to Low} \\
+        \text{0} &\rightarrow \text{High to Low} \\
+        \text{1} &\rightarrow \text{Low to High} \\
+        \text{1} &\rightarrow \text{Low to High} \\
+        \text{0} &\rightarrow \text{High to Low} \\
+        \text{1} &\rightarrow \text{Low to High} \\
+        \text{1} &\rightarrow \text{Low to High} \\
+        \text{1} &\rightarrow \text{Low to High}
+    \end{align*}
+
+    The encoded signal is: \texttt{10, 01, 01, 10, 10, 01, 10, 10, 10}
+
+    \item \textbf{Differential Manchester Encoding}
+    
+    In Differential Manchester encoding:
+    \begin{itemize}
+        \item A '0' is represented by a transition at the beginning of the bit period.
+        \item A '1' is represented by no transition at the beginning of the bit period.
+    \end{itemize}
+
+    For \texttt{100110111}:
+    \begin{align*}
+        \text{Starting with Low:} & \\
+        \text{1} &\rightarrow \text{No transition, remains Low} \\
+        \text{0} &\rightarrow \text{Transition at the start, goes High} \\
+        \text{0} &\rightarrow \text{Transition at the start, goes Low} \\
+        \text{1} &\rightarrow \text{No transition, remains Low} \\
+        \text{1} &\rightarrow \text{No transition, remains Low} \\
+        \text{0} &\rightarrow \text{Transition at the start, goes High} \\
+        \text{1} &\rightarrow \text{No transition, remains High} \\
+        \text{1} &\rightarrow \text{No transition, remains High} \\
+        \text{1} &\rightarrow \text{No transition, remains High}
+    \end{align*}
+
+    The encoded signal is: \texttt{Low, High, Low, Low, Low, High, Low, Low, Low}
+\end{enumerate}
+
+\section*{Difference Between Datagram and Virtual Circuit Operation}
+
+\begin{description}
+    \item[Datagram Operation:] 
+    \begin{itemize}
+        \item \textbf{Connectionless:} Each packet (datagram) is treated independently, and there is no need to establish a connection before sending packets.
+        \item \textbf{Flexibility and Resilience:} Packets can take alternate routes to adapt to network changes.
+        \item \textbf{Packet Delivery:} Delivery is not guaranteed, and packets may arrive out of order, be duplicated, or lost.
+        \item \textbf{Example Protocols:} Internet Protocol (IP).
+    \end{itemize}
+
+    \item[Virtual Circuit Operation:]
+    \begin{itemize}
+        \item \textbf{Connection-oriented:} Establishes a dedicated path before communication begins, ensuring a reliable session.
+        \item \textbf{Predictable Delivery:} All packets follow the same path, arriving in order and with reliable delivery.
+        \item \textbf{Resource Reservation:} Resources may be reserved for the duration of communication, enhancing bandwidth and latency performance.
+        \item \textbf{Example Protocols:} Frame Relay and X.25.
+    \end{itemize}
+\end{description}
+
+\end{document}

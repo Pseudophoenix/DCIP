@@ -1,0 +1,120 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Networking Concepts and Protocols}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Multiplexing}
+Multiplexing is a technique used to combine multiple signals for transmission over a single communication channel or medium. This method maximizes the utilization of available bandwidth by allowing multiple data streams to share the same communication channel.
+
+\subsection{Types of Multiplexing}
+\begin{itemize}
+    \item \textbf{Frequency Division Multiplexing (FDM)}: Each signal is assigned a unique frequency within the channel's available bandwidth, allowing multiple signals to be transmitted simultaneously.
+    \item \textbf{Time Division Multiplexing (TDM)}: Each signal is assigned a specific time slot within a repeating cycle. Only one signal is transmitted at a time, but by rapidly alternating time slots, it achieves the appearance of simultaneous transmission.
+    \item \textbf{Wavelength Division Multiplexing (WDM)}: Commonly used in fiber-optic communication, WDM allows multiple light signals at different wavelengths to be transmitted over the same fiber.
+    \item \textbf{Code Division Multiplexing (CDM)}: Each signal is assigned a unique code, allowing multiple signals to occupy the same channel simultaneously by spreading them over a range of frequencies.
+\end{itemize}
+
+\subsection{Applications}
+\begin{itemize}
+    \item \textbf{Telecommunications}: Multiplexing enables efficient use of bandwidth in telephone networks, where many calls share a single line.
+    \item \textbf{Computer Networks}: TDM is used in packet-switched networks to allow multiple data streams to share the same channel.
+    \item \textbf{Broadcasting}: In cable TV, FDM allows multiple channels to be transmitted simultaneously over a single cable.
+\end{itemize}
+
+\section{Frequency-Hopping Spread Spectrum (FHSS)}
+FHSS is a spread spectrum technique where the carrier frequency of the signal rapidly switches or "hops" among multiple frequencies within a designated range. This hopping follows a sequence known only to the transmitter and receiver, adding security and interference resistance to the signal.
+
+\subsection{How FHSS Works}
+\begin{itemize}
+    \item \textbf{Frequency Hopping}: The transmitter changes its carrier frequency in a pseudorandom pattern, which the receiver must know in advance to follow and decode the signal.
+    \item \textbf{Bandwidth Usage}: By hopping frequencies, the signal spreads over a wider bandwidth than would otherwise be necessary, making it less vulnerable to narrowband interference.
+\end{itemize}
+
+\subsection{Advantages}
+\begin{itemize}
+    \item \textbf{Interference Resistance}: If interference occurs on one frequency, the signal can still be received as it rapidly switches to other frequencies.
+    \item \textbf{Security}: The pseudorandom hopping pattern makes it difficult for unauthorized receivers to intercept the signal.
+    \item \textbf{Multipath Resistance}: FHSS reduces the impact of multipath fading, common in environments with reflective surfaces.
+\end{itemize}
+
+\section{Direct Sequence Spread Spectrum (DSSS)}
+DSSS is a spread spectrum technique in which the data signal is spread by multiplying it with a high-rate pseudorandom code, called a spreading code or chip sequence. This spreads the signal over a wider frequency band than the original data bandwidth.
+
+\subsection{How DSSS Works}
+\begin{itemize}
+    \item \textbf{Spreading Code}: Each bit in the data signal is multiplied by a high-rate pseudorandom code.
+    \item \textbf{Wideband Signal}: This multiplication process spreads the data signal across a wide frequency band.
+    \item \textbf{Demodulation}: The receiver uses the same pseudorandom code to despread the signal, recovering the original data.
+\end{itemize}
+
+\section{Automatic Repeat Request (ARQ)}
+ARQ is a protocol used for error control in data communication. There are three primary versions:
+
+\subsection{Types of ARQ}
+\begin{enumerate}
+    \item \textbf{Stop-and-Wait ARQ}
+    \begin{itemize}
+        \item Transmits one frame and waits for acknowledgment
+        \item Inefficient for high-latency networks
+    \end{itemize}
+    
+    \item \textbf{Go-Back-N ARQ}
+    \begin{itemize}
+        \item Can transmit multiple frames before receiving acknowledgment
+        \item Limited by window size N
+        \item Retransmits all frames from error point
+    \end{itemize}
+    
+    \item \textbf{Selective Repeat ARQ}
+    \begin{itemize}
+        \item Retransmits only erroneous frames
+        \item More efficient in handling errors
+        \item Requires complex buffer management
+    \end{itemize}
+\end{enumerate}
+
+\section{Synchronous Time Division Multiplexing (TDM)}
+Synchronous TDM is a method where multiple data streams are transmitted over a single communication channel by assigning each stream a fixed time slot in a repeating sequence.
+
+\subsection{Key Characteristics}
+\begin{itemize}
+    \item \textbf{Time Slots}: Channel divided into fixed time slots
+    \item \textbf{Synchronization}: Sender and receiver must be synchronized
+    \item \textbf{Fixed Allocation}: Pre-determined slot order
+\end{itemize}
+
+\section{Frequency Division Multiplexing (FDM)}
+FDM allows multiple signals to be transmitted simultaneously over a single channel by assigning each signal a unique frequency within the available bandwidth.
+
+\subsection{Key Features}
+\begin{itemize}
+    \item \textbf{Frequency Allocation}: Each signal gets unique carrier frequency
+    \item \textbf{Guard Bands}: Prevent interference between adjacent channels
+    \item \textbf{Simultaneous Transmission}: All signals transmitted concurrently
+\end{itemize}
+
+\section{Sliding-Window Flow Control}
+A technique for managing data flow between network devices that allows multiple frames to be sent before requiring acknowledgment.
+
+\subsection{Advantages over Stop-and-Wait}
+\begin{itemize}
+    \item \textbf{Continuous Data Flow}: Multiple frames in transit simultaneously
+    \item \textbf{Better Bandwidth Utilization}: Maximizes channel usage
+    \item \textbf{Reduced Delays}: Fewer transmission pauses
+    \item \textbf{Higher Efficiency}: Particularly beneficial in high-latency networks
+\end{itemize}
+
+\end{document}
